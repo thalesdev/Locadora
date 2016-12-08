@@ -4,7 +4,7 @@
  header("Content-type: application/json; charset=utf-8");
  error_reporting(0); 
 
-// Inclui a casse Kernel.
+// Inclui a classe Kernel.
 require_once   "/class/Kernel.class.php";
 // Inclui as configurações..
 require_once   "config.php";
