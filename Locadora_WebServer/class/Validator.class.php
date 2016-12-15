@@ -20,7 +20,7 @@ class Validator
 	   	 	$this->is_val = false;
 	   	 }else{
 	   	 	// se existir ele adiciona no $fields da classe Validator..
-	   	 	$this->fields[$key] = utf8_encode(trim(filter_input(INPUT_POST, $key))); 
+	   	 	$this->fields[$key] = trim(filter_input(INPUT_POST, $key)); 
 	   	 }
 	   }
 	}

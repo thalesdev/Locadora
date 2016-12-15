@@ -1,4 +1,5 @@
-<?php  
+<?php 
+
  // Busca todos clientes.
  $stmt = $db->prepare("SELECT * FROM clientes");
  $stmt->execute();

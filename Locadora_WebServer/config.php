@@ -4,10 +4,10 @@
 return $config = [
    // Configurações do banco de dados MySql
    "database" => [
-     "host" => "localhost",
+     "host" => "127.0.0.1",
      "port" => "3306",
      "username" => "root",
-     "password" => "",
+     "password" => "11020914",
      "dbname"  => "locadora"
     ],
    // Token de autenticação
@@ -34,6 +34,10 @@ return $config = [
       "GET:\/cliente\/(?P<id>\d+)" => "pages/showclienteporid.php",
       "GET:\/filme\/(?P<id>\d+)" => "pages/showfilmeporid.php",
       "GET:\/locacao\/(?P<id>\d+)" => "pages/showlocacaoid.php",
+
+      "GET:\/cliente\/delete\/(?P<id>\d+)" => "pages/deletaclienteporid.php",
+      "GET:\/filme\/delete\/(?P<id>\d+)" => "pages/deletafilmeporid.php",
+      "GET:\/locacao\/delete\/(?P<id>\d+)" => "pages/deletalocacaoid.php",
 
        
 

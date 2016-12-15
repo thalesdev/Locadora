@@ -1,8 +1,8 @@
 <?php 
 
    // Inclui as principais depdencias e as configurações da aplicação..
- 	 require_once "/../config.php";
- 	 require_once "/../autoload.php";
+ 	 require_once __DIR__."/../config.php";
+ 	 require_once __DIR__."/../autoload.php";
 
 
  /**
@@ -58,16 +58,16 @@
         // Percore as rotas do config onde $key é a regra do mapeamento e $value é a pagina a ser incluida.
         foreach ($this->config["routes"] as $key => $value) {
           // Separa a string em uma array pelo limitador ":", para separar o metodo de requisição e a regra, $new_key[0] estará  GET ou POST dependendo do seu mapeamento, $new_key[1]  é o mapeamento por exemplo "api/users".
-      	  $new_key = split(":", $key);
+      	  $new_key = explode(":", $key);
           // Invoca o metodo preg_match e valida se a requisição que o usuario fez é a mesma do mapeamento.
       	  if(preg_match("/".$new_key[0]."/i",$request_method)){
               // Verifica se o mapeamento é o mesmo que o requisitado pelo o usuario
-              // Split("\?", $request_uri)[0] divide a url requisitada pelo caractere ? que indica o conteudo de uma requisição get que nao e importante para a validação.
-              if(preg_match("/^".$new_key[1]."$/i", split("\?",$request_uri)[0], $args)){
+              // explode("\?", $request_uri)[0] divide a url requisitada pelo caractere ? que indica o conteudo de uma requisição get que nao e importante para a validação.
+              if(preg_match("/^".$new_key[1]."$/i", explode("?",$request_uri)[0], $args)){
                  // define o banco de dados com a variavel local $db
                  $db = $this->con();
                  // inclui a pagina mapeada nas config.
-                 include "/../". $value;
+                 include __DIR__."/../". $value;
                  // não deixa o codigo continuar.
                  return;
               }
@@ -80,7 +80,7 @@
     }
 
 
-   // Metodo recursivo, que converte os caracteres de uma array caso eles forem utf8.
+   // Metodo recursivo, que converte os caracteres de uma array caso eles não forem utf8.
  public function utf8_converter($array)
   {
     array_walk_recursive($array, function(&$item, $key){
@@ -91,7 +91,6 @@
  
     return $array;
    }
-
    // Metodo recurivo que converte um objeto(Classe) em array(Vetor/Matriz).
   public  function  objectToArray($d) {
         if (is_object($d)) {
@@ -118,7 +117,7 @@
 
    // Transforma um statement do PDO ou seja resultados em uma lista json, escapando os caracteres unicode.
    public function fetchToJson($resultFetch){
-       return json_encode($this->toUTF8($resultFetch),JSON_UNESCAPED_UNICODE);
+      return json_encode($this->toUTF8($resultFetch),JSON_UNESCAPED_UNICODE);
    }
 
    //  Converte um Array ou Objeto pra utf8 usando os metodos da classe.

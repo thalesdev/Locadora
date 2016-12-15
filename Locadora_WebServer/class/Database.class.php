@@ -16,6 +16,7 @@ class Database
 		$this->port = $port;
 		$this->username = $username;
 		$this->dbname = $dbname;
+		$this->password = $password;
 	}
 
 
@@ -23,7 +24,8 @@ class Database
 	public function Connect()
 	{
 		 try{
-             $connection = new PDO("mysql:host=". $this->host .";port=". $this->port . ";dbname=". $this->dbname, $this->username, $this->password);
+             $connection = new PDO("mysql:host=". $this->host .";port=". $this->port . ";dbname=". $this->dbname, $this->username, $this->password,
+             	 array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
              return $connection;
 		 }
 		 catch(Exception $e){

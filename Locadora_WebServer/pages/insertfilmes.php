@@ -10,7 +10,7 @@
     // Se a validação estiver tudo ok!
   	function($input){
   		 // Insere o cliente
-  		 $statement = $this->db->prepare("INSERT INTO filmes(titulo,ano,duracao,preco_locacao) VALUES(?,?,?,?)");
+  		 $statement = $this->db->prepare("INSERT INTO filmes(titulo,ano,duracao,preco_locacao) VALUES(?,?,?,?)");    
   		 $statement->bindParam(1,$input["titulo"]);
   		 $statement->bindParam(2,$input["ano"]);
        $statement->bindParam(3,$input["duracao"]);
